@@ -21,7 +21,7 @@ import java.util.Optional;
 @RequestMapping("/api/guineapig")
 public class GuineaPigController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(GuineaPig.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(GuineaPigController.class);
 
     private final GuineaPigRepository guineaPigRepository;
 

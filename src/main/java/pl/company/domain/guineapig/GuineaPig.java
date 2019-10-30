@@ -26,7 +26,7 @@ public class GuineaPig implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "guinea_id")
-    private long id;
+    private Long id;
     @NotNull
     @Size(min = 2, max = 40)
     @Column(name = "name")

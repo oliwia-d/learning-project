@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinColumns;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
@@ -24,7 +22,7 @@ public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private long id;
+    private Long id;
     @NotNull
     @Size(min = 3, max = 50)
     @Column(name = "name")
@@ -39,6 +37,14 @@ public class Person implements Serializable {
     private int age;
     @OneToMany(mappedBy = "person")
     private List<GuineaPig> piggies;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
@@ -77,8 +83,8 @@ public class Person implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
-        return id == person.id &&
-                age == person.age &&
+        return age == person.age &&
+                id.equals(person.id) &&
                 Objects.equals(name, person.name) &&
                 Objects.equals(surname, person.surname);
     }

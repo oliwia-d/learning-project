@@ -1,6 +1,7 @@
-package pl.company.model;
+package pl.company.domain.guineapig;
 
-import pl.company.enumeration.Gender;
+import pl.company.domain.person.Gender;
+import pl.company.domain.person.Person;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

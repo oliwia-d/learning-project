@@ -1,5 +1,6 @@
 package pl.company.domain.person;
 
+import lombok.Data;
 import pl.company.domain.guineapig.GuineaPig;
 
 import javax.persistence.Column;
@@ -14,13 +15,13 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
-import java.util.Objects;
 
 @Entity
+@Data
 @Table(name = "person")
 public class Person implements Serializable {
 
-    public static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 8473084507801116089L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -39,52 +40,4 @@ public class Person implements Serializable {
     private int age;
     @OneToMany(mappedBy = "person")
     private List<GuineaPig> piggies;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public List<GuineaPig> getPiggies() {
-        return piggies;
-    }
-
-    public void setPiggies(List<GuineaPig> piggies) {
-        this.piggies = piggies;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person) o;
-        return id == person.id &&
-                age == person.age &&
-                Objects.equals(name, person.name) &&
-                Objects.equals(surname, person.surname);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, surname, age);
-    }
 }

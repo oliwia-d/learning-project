@@ -1,5 +1,6 @@
 package pl.company.domain.guineapig;
 
+import lombok.Data;
 import pl.company.domain.person.Gender;
 import pl.company.domain.person.Person;
 
@@ -14,13 +15,13 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.io.Serializable;
-import java.util.Objects;
 
 @Entity
+@Data
 @Table(name = "guinea_pig")
 public class GuineaPig implements Serializable {
 
-    static final long serialVersionUID = 2L;
+    private static final long serialVersionUID = -3372670564868314867L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -37,53 +38,4 @@ public class GuineaPig implements Serializable {
     @ManyToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private Person person;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        GuineaPig guineaPig = (GuineaPig) o;
-        return id == guineaPig.id &&
-                age == guineaPig.age &&
-                Objects.equals(name, guineaPig.name) &&
-                Objects.equals(gender, guineaPig.gender) &&
-                Objects.equals(person, guineaPig.person);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, age, gender, person);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Gender getGender() {
-        return gender;
-    }
-
-    public void setGender(Gender gender) {
-        this.gender = gender;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 }

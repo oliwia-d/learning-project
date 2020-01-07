@@ -1,6 +1,11 @@
 package pl.company.domain.guineapig;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import pl.company.domain.person.Gender;
 import pl.company.domain.person.Person;
 
@@ -17,7 +22,11 @@ import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 @Entity
-@Data
+@Builder
+@Setter
+@Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "guinea_pig")
 public class GuineaPig implements Serializable {
 
@@ -26,15 +35,19 @@ public class GuineaPig implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "guinea_id")
-    private long id;
+    private Long id;
+
     @NotNull
     @Size(min = 2, max = 40)
     @Column(name = "name")
     private String name;
+
     @Column(name = "age")
     private int age;
+
     @Column(name = "gender")
     private Gender gender;
+
     @ManyToOne
     @JoinColumn(name = "owner_id", referencedColumnName = "id")
     private Person person;

@@ -26,18 +26,25 @@ public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
+
+    // TODO move javax validation to command
     @NotNull
     @Size(min = 3, max = 50)
     @Column(name = "name")
     private String name;
+
+    // TODO move javax validation to command
     @NotNull
     @Size(min = 3, max = 50)
     @Column(name = "surname")
     private String surname;
+
+    // TODO move javax validation to command
     @NotNull
     @Min(value = 1)
     @Column(name = "age")
     private int age;
+
     @OneToMany(mappedBy = "person")
     private List<GuineaPig> piggies;
 }

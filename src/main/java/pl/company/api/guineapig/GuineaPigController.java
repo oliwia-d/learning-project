@@ -20,7 +20,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/api/guineapig")
+@RequestMapping("/api/guinea-pig")
 public class GuineaPigController {
 
     private final GuineaPigService guineaPigService;

@@ -21,7 +21,7 @@ public class GuineaPigService {
     private final CommandToGuineaPigMapper mapper;
 
     public List<GuineaPig> getPiggies() {
-        log.info("Get request for all guinea pigs");
+        log.info("Get request for all guinea pigs.");
         return guineaPigRepository.findAll();
     }
 
@@ -39,8 +39,13 @@ public class GuineaPigService {
 
     public GuineaPig updateGuineaPig(UpdateGuineaPigCommand command) {
         log.info("Put request to update guinea pig using following data: {}.", command);
-        GuineaPig pigToUpdate = mapper.map(command);
-        return guineaPigRepository.save(pigToUpdate);
+
+        if(!guineaPigRepository.existsById(command.getId())) {
+            throw new NotFoundException("Guinea pig was not found.");
+        }
+
+        GuineaPig updatedPig = mapper.map(command);
+        return guineaPigRepository.save(updatedPig);
     }
 
     public void deletePig(Long id) {

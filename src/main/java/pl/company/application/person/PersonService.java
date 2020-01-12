@@ -40,7 +40,7 @@ public class PersonService {
     public Person updatePerson(UpdatePersonCommand command) {
         log.info("Put request to update person using following data: {}.", command);
 
-        if(!personRepository.existsById(command.getId())) {
+        if (!personRepository.existsById(command.getId())) {
             throw new NotFoundException("Person was not found.");
         }
 

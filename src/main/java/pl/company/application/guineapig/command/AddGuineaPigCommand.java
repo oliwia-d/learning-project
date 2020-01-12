@@ -1,11 +1,16 @@
 package pl.company.application.guineapig.command;
 
+import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import pl.company.domain.person.Gender;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class AddGuineaPigCommand extends GuineaPigCommand {
+
+    @Builder
+    public AddGuineaPigCommand(String name, int age, Gender gender) {
+        super(name, age, gender);
+    }
 }

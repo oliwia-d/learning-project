@@ -40,7 +40,7 @@ public class GuineaPigService {
     public GuineaPig updateGuineaPig(UpdateGuineaPigCommand command) {
         log.info("Put request to update guinea pig using following data: {}.", command);
 
-        if(!guineaPigRepository.existsById(command.getId())) {
+        if (!guineaPigRepository.existsById(command.getId())) {
             throw new NotFoundException("Guinea pig was not found.");
         }
 

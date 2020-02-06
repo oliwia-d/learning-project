@@ -15,7 +15,7 @@ public class UpdateGuineaPigCommand extends GuineaPigCommand {
     private Long id;
 
     @Builder
-    public UpdateGuineaPigCommand(String name, int age, Gender gender, Long id) {
+    public UpdateGuineaPigCommand(String name, Integer age, Gender gender, Long id) {
         super(name, age, gender);
         this.id = id;
     }

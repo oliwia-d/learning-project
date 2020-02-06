@@ -104,7 +104,7 @@ class PersonServiceSpec extends Specification {
                 .build()
 
         and:
-        def command = new AddPersonCommand(name: name, surname: surname, age: age)
+        def command = new AddPersonCommand(name, surname, age)
 
         and:
         mapper.map(command) >> person
@@ -133,7 +133,7 @@ class PersonServiceSpec extends Specification {
                 .build()
 
         and:
-        def command = new UpdatePersonCommand(id: id, name: name, surname: surname, age: age)
+        def command = new UpdatePersonCommand(name, surname, age, id)
 
         and:
         repository.existsById(command.getId()) >> true
@@ -153,9 +153,12 @@ class PersonServiceSpec extends Specification {
     def "it should throw NotFoundException given not existing id (UPDATE)"() {
         given:
         def id = 3L
+        def name = "Xyz"
+        def surname = "Zyx"
+        def age = 19
 
         and:
-        def command = new UpdatePersonCommand(id: id)
+        def command = new UpdatePersonCommand(name, surname, age, id)
 
         and:
         repository.existsById(command.getId()) >> false
@@ -169,12 +172,30 @@ class PersonServiceSpec extends Specification {
 
     def "it should delete person given correct id (DELETE)"() {
         given:
-        def id = 2L
+        def id = 1L
+
+        and:
+        repository.existsById(id) >> true
 
         when:
         personService.deletePerson(id)
 
         then:
         1 * repository.deleteById(id)
+    }
+
+    def "it should throw NotFoundException given not existing id (DELETE)"() {
+        given:
+        def id = 1L
+
+        and:
+        repository.existsById(id) >> false
+
+        when:
+        personService.deletePerson(id)
+
+        then:
+        thrown(NotFoundException)
+        0 * repository.deleteById(id)
     }
 }

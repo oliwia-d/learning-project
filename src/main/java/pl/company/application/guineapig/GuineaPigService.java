@@ -50,6 +50,11 @@ public class GuineaPigService {
 
     public void deletePig(Long id) {
         log.info("Delete request to remove guinea pig with id {}.", id);
+
+        if (!guineaPigRepository.existsById(id)) {
+            throw new NotFoundException("Guinea pig was not found.");
+        }
+
         guineaPigRepository.deleteById(id);
     }
 }

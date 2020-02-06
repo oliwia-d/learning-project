@@ -174,10 +174,28 @@ class GuineaPigServiceSpec extends Specification {
         given:
         def id = 1L
 
+        and:
+        repository.existsById(id) >> true
+
         when:
         guineaPigService.deletePig(id)
 
         then:
         1 * repository.deleteById(id)
+    }
+
+    def "it should throw NotFoundException given not existing id (DELETE)"() {
+        given:
+        def id = 1L
+
+        and:
+        repository.existsById(id) >> false
+
+        when:
+        guineaPigService.deletePig(id)
+
+        then:
+        thrown(NotFoundException)
+        0 * repository.deleteById(id)
     }
 }

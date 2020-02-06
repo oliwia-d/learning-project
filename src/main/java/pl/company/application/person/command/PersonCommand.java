@@ -1,5 +1,6 @@
 package pl.company.application.person.command;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,6 +10,7 @@ import javax.validation.constraints.Size;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public abstract class PersonCommand {
 
     @NotNull
@@ -20,7 +22,7 @@ public abstract class PersonCommand {
     private String surname;
 
     @NotNull
-    @Min(value = 1)
-    private int age;
+    @Min(1)
+    private Integer age;
 
 }

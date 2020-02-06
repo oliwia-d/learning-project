@@ -10,7 +10,7 @@ import pl.company.domain.person.Gender;
 public class AddGuineaPigCommand extends GuineaPigCommand {
 
     @Builder
-    public AddGuineaPigCommand(String name, int age, Gender gender) {
+    public AddGuineaPigCommand(String name, Integer age, Gender gender) {
         super(name, age, gender);
     }
 }

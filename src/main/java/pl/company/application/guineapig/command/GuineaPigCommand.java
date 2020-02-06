@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import pl.company.domain.person.Gender;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -17,7 +18,10 @@ public abstract class GuineaPigCommand {
     @Size(min = 2, max = 40)
     private String name;
 
-    private int age;
+    @NotNull
+    @Min(1)
+    private Integer age;
 
+    @NotNull
     private Gender gender;
 }

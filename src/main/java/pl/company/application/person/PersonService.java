@@ -50,6 +50,11 @@ public class PersonService {
 
     public void deletePerson(Long id) {
         log.info("Delete request to remove person with id {}.", id);
+
+        if (!personRepository.existsById(id)) {
+            throw new NotFoundException("Person was not found.");
+        }
+
         personRepository.deleteById(id);
     }
 }

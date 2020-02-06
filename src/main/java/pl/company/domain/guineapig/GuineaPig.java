@@ -2,6 +2,7 @@ package pl.company.domain.guineapig;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +27,7 @@ import java.io.Serializable;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 @Table(name = "guinea_pig")
 public class GuineaPig implements Serializable {
 
@@ -36,13 +38,11 @@ public class GuineaPig implements Serializable {
     @Column(name = "guinea_id")
     private Long id;
 
-    @NotNull
-    @Size(min = 2, max = 40)
     @Column(name = "name")
     private String name;
 
     @Column(name = "age")
-    private int age;
+    private Integer age;
 
     @Column(name = "gender")
     private Gender gender;
